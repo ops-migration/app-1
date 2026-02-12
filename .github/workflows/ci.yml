@@ -15,6 +15,7 @@ permissions:
   security-events: write
   id-token: write
 
+
 jobs:
   ci:
     uses: ops-migration/central-shared-workflow/.github/workflows/ci-workflow.yml@main
