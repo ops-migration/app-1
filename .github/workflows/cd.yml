@@ -1,18 +1,18 @@
-name: CD - Deploy to qa
+name: CD - Deploy to dev
 
 on:
   push:
     branches:
-      - feature-qa-i
+      - feature-dev-i
 
 jobs:
   deploy-qa:
     uses: ops-migration/central-shared-workflow/.github/workflows/cd-workflow.yml@main
     with:
-      ecs-cluster: "qa-app"
-      ecs-service: "qa-app"
-      cf-stack-name: "qa-ecs-stack"
-      target-env: "qa"
-      environment-name: "qa"
-      environment-url: "https://qa-app.com"
+      ecs-cluster: "dev-app"
+      ecs-service: "dev-app"
+      cf-stack-name: "dev-ecs-stack"
+      target-env: "dev"
+      environment-name: "dev"
+      environment-url: "https://dev-app.com"
       aws-region: "us-east-1"
