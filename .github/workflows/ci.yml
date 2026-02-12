@@ -19,7 +19,7 @@ jobs:
   ci:
     uses: ops-migration/central-shared-workflow/.github/workflows/ci-workflow.yml@main
     with:
-      ecr-repository: "hat/app-1"  # Change per repository
+      ecr-repository: "app-1"
       aws-region: "us-east-1"
       target-branch: "feature-dev-i"
       sonar-enabled: true
