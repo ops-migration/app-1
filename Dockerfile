@@ -21,4 +21,3 @@ COPY app.py .
 
 # Run the application
 CMD ["python", "app.py"]
-
