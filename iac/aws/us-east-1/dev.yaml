@@ -12,3 +12,4 @@ Outputs:
   NestedStackLambdaArn:
     Description: ARN of the Lambda function from nested stack
     Value: !GetAtt NestedStack.Outputs.LambdaArn
+    
