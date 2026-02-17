@@ -60,16 +60,6 @@ Resources:
         AppName: !Ref AppName
         CloudWatchLogGroupArn: !GetAtt LogsNestedStack.Outputs.LogGroupArn
 
-  SgNestedStack:
-    Type: AWS::CloudFormation::Stack
-    Properties:
-      TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/sg.yaml"
-      Parameters:
-        VpcId: !Ref VpcId
-        AppName: !Ref AppName
-        IngressCidr: 0.0.0.0/0
-        IngressPort: 80
-
   CodeBuildNestedStack:
     Type: AWS::CloudFormation::Stack
     Properties:
