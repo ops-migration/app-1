@@ -60,14 +60,14 @@ Resources:
         AppName: !Ref AppName
         CloudWatchLogGroupArn: !GetAtt LogsNestedStack.Outputs.LogGroupArn
 
-  CodeBuildNestedStack:
-    Type: AWS::CloudFormation::Stack
-    Properties:
-      TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/codebuild.yaml"
-      Parameters:
-        ProjectName: !Sub "${AppName}-codebuild"
-        ServiceRoleArn: arn:aws:iam::<your-account-id>:role/<codebuild-service-role>
-        SourceRepoUrl: !Ref SourceRepoUrl
-        SourceBranch: !Ref SourceBranch
-        ArtifactsBucket: !Ref ArtifactsBucket
-        EnvironmentImage: "aws/codebuild/standard:7.0"
+  # CodeBuildNestedStack:
+  #   Type: AWS::CloudFormation::Stack
+  #   Properties:
+  #     TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/codebuild.yaml"
+  #     Parameters:
+  #       ProjectName: !Sub "${AppName}-codebuild"
+  #       ServiceRoleArn: arn:aws:iam::<your-account-id>:role/<codebuild-service-role>
+  #       SourceRepoUrl: !Ref SourceRepoUrl
+  #       SourceBranch: !Ref SourceBranch
+  #       ArtifactsBucket: !Ref ArtifactsBucket
+  #       EnvironmentImage: "aws/codebuild/standard:7.0"
