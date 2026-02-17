@@ -52,13 +52,13 @@ Resources:
       Parameters:
         RepositoryName: !Sub "${AppName}"
 
-  IamNestedStack:
-    Type: AWS::CloudFormation::Stack
-    Properties:
-      TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/iam.yaml"
-      Parameters:
-        AppName: !Ref AppName
-        CloudWatchLogGroupArn: !GetAtt LogsNestedStack.Outputs.LogGroupArn
+  # IamNestedStack:
+  #   Type: AWS::CloudFormation::Stack
+  #   Properties:
+  #     TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/iam.yaml"
+  #     Parameters:
+  #       AppName: !Ref AppName
+  #       CloudWatchLogGroupArn: !GetAtt LogsNestedStack.Outputs.LogGroupArn
 
   # CodeBuildNestedStack:
   #   Type: AWS::CloudFormation::Stack
