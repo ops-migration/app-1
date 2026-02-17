@@ -8,3 +8,76 @@ Resources:
       TemplateURL: https://s3.us-east-1.amazonaws.com/ecs-migration-cloud-formation-templates/s3.yaml
       Parameters:
         BucketName: app-1-bucket-dev-12022026
+
+AWSTemplateFormatVersion: 2010-09-09
+Description: App-1 dev stack using nested stacks
+
+Parameters:
+  TemplatesBucket:
+    Type: String
+    Default: ecs-migration-cloud-formation-templates
+  AppName:
+    Type: String
+    Default: app-1-dev
+  VpcId:
+    Type: String
+  ArtifactsBucket:
+    Type: String
+  SourceRepoUrl:
+    Type: String
+  SourceBranch:
+    Type: String
+    Default: feature-dev-i
+
+Resources:
+  S3NestedStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/s3.yaml"
+      Parameters:
+        BucketName: !Sub "${AppName}-bucket-12022026"
+
+  LogsNestedStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/cloudwatch-logs.yaml"
+      Parameters:
+        LogGroupName: !Sub "/ecs/${AppName}"
+        RetentionInDays: 30
+
+  EcrNestedStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/ecr.yaml"
+      Parameters:
+        RepositoryName: !Sub "${AppName}"
+
+  IamNestedStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/iam.yaml"
+      Parameters:
+        AppName: !Ref AppName
+        CloudWatchLogGroupArn: !GetAtt LogsNestedStack.Outputs.LogGroupArn
+
+  SgNestedStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/sg.yaml"
+      Parameters:
+        VpcId: !Ref VpcId
+        AppName: !Ref AppName
+        IngressCidr: 0.0.0.0/0
+        IngressPort: 80
+
+  CodeBuildNestedStack:
+    Type: AWS::CloudFormation::Stack
+    Properties:
+      TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/codebuild.yaml"
+      Parameters:
+        ProjectName: !Sub "${AppName}-codebuild"
+        ServiceRoleArn: arn:aws:iam::<your-account-id>:role/<codebuild-service-role>
+        SourceRepoUrl: !Ref SourceRepoUrl
+        SourceBranch: !Ref SourceBranch
+        ArtifactsBucket: !Ref ArtifactsBucket
+        EnvironmentImage: "aws/codebuild/standard:7.0"
