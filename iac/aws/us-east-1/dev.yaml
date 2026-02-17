@@ -35,7 +35,7 @@ Resources:
     Properties:
       TemplateURL: !Sub "https://s3.${AWS::Region}.amazonaws.com/${TemplatesBucket}/s3.yaml"
       Parameters:
-        BucketName: !Sub "${AppName}-bucket-12022026"
+        BucketName: !Sub "${AppName}-bucket-17022026"
 
   LogsNestedStack:
     Type: AWS::CloudFormation::Stack
@@ -71,3 +71,4 @@ Resources:
   #       SourceBranch: !Ref SourceBranch
   #       ArtifactsBucket: !Ref ArtifactsBucket
   #       EnvironmentImage: "aws/codebuild/standard:7.0"
+  
