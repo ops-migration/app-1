@@ -71,4 +71,3 @@ Resources:
   #       SourceBranch: !Ref SourceBranch
   #       ArtifactsBucket: !Ref ArtifactsBucket
   #       EnvironmentImage: "aws/codebuild/standard:7.0"
-  
