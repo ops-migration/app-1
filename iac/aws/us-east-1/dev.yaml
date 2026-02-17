@@ -7,7 +7,7 @@ Resources:
     Properties:
       TemplateURL: https://s3.us-east-1.amazonaws.com/ecs-migration-cloud-formation-templates/s3.yaml
       Parameters:
-        BucketName: app-1-bucket-12022026
+        BucketName: app-1-bucket-dev-12022026
 Outputs:
   NestedStackLambdaArn:
     Description: ARN of the Lambda function from nested stack
