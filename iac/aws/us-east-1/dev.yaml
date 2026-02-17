@@ -19,12 +19,12 @@ Parameters:
   AppName:
     Type: String
     Default: app-1-dev
-  VpcId:
-    Type: String
-  ArtifactsBucket:
-    Type: String
-  SourceRepoUrl:
-    Type: String
+  # VpcId:
+  #   Type: String
+  # ArtifactsBucket:
+  #   Type: String
+  # SourceRepoUrl:
+  #   Type: String
   SourceBranch:
     Type: String
     Default: feature-dev-i
