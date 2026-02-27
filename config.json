@@ -1,4 +1,4 @@
 {
-  "docker_image_uri": "533267275979.dkr.ecr.us-east-1.amazonaws.com/app-1:5f6a4efc672391b6faa081b35ba3f0a338746e95",
-  "commit_hash": "5f6a4efc672391b6faa081b35ba3f0a338746e95"
+  "docker_image_uri": "533267275979.dkr.ecr.us-east-1.amazonaws.com/app-1:5914002440063bf2116d29076da09217fc7960b3",
+  "commit_hash": "5914002440063bf2116d29076da09217fc7960b3"
 }
